@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>.org.eclipse.jdt.core.external.folders</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>.link5</name>
+			<type>2</type>
+			<location>F:/DEV/GGTS/ggts-3.1.0.RELEASE/plugins/org.grails.ide.eclipse.resources_3.1.0.201210040544-RELEASE/dsl-support</location>
+		</link>
+		<link>
+			<name>.link8</name>
+			<type>2</type>
+			<location>F:/DEV/resources/grails/grails-2.1.0/scripts</location>
+		</link>
+		<link>
+			<name>.link9</name>
+			<type>2</type>
+			<location>C:/Users/Sergus/.grails/2.1.0/projects/trieranantes/plugin-classes</location>
+		</link>
+	</linkedResources>
+</projectDescription>
