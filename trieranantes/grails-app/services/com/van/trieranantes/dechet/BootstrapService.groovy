@@ -13,8 +13,11 @@ class BootstrapService {
 		
 		/* CATEGORIES */
 		
-		CategorieUsuelle catUsuelle1 = new CategorieUsuelle(code:"catUsuelle1", nom:"Verre / Vaisselle / Pots", estSousCategorieUsuelle:false)
+		CategorieUsuelle catUsuelle1 = new CategorieUsuelle(code:"cu_verrevaisselle", nom:"Verre / Vaisselle / Pots", estSousCategorieUsuelle:false)
 		catUsuelle1.save()
+		
+		CategorieUsuelle catUsuelle2 = new CategorieUsuelle(code:"cu_toxique", nom:"Toxique", estSousCategorieUsuelle:false)
+		catUsuelle2.save()
 		
 		CategorieTraitement cat1 = new CategorieTraitement(code:"cat1", libelle:"Verre", description:"du verre")
 		cat1.save()
