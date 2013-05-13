@@ -19,7 +19,23 @@
 		<![endif]-->
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'maintri.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'menu_assets/styles.css')}" type="text/css">
-		<script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+		
+		<g:javascript src="application.js" />
+		<g:javascript src="map/map.js" />
+		
+		<g:javascript library="jquery" plugin="jquery"/>
+		
+		<!--  LEAFLET MAP -->
+		
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+		<!--[if lte IE 8]>
+    	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.ie.css" />
+		<![endif]-->
+		<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+		
+		<!--  GOOGLE MAP API V3 pour le webservice de geolocalisation -->
+		
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>	
 		
 		<g:layoutHead/>
 		<r:layoutResources />
@@ -43,7 +59,6 @@
         	<div id="footer" class="span-24">
 				<g:render template="/layouts/footer" />	
         	</div>
-			<r:layoutResources />
 		</div>
 	</body>
 </html>

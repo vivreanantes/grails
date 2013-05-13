@@ -11,7 +11,7 @@
 			<div class="picto"><r:img uri="${dechet.nomFichier}"/></div>
 			<div class="item">
 				<div class="intro">
-						<h2>${dechet.nom}</h2>
+						<h2><g:link controller="Dechet" action="detail" id="${dechet.id}">${dechet.nom}</g:link></h2>
 				</div>
 			</div>
 			<div class="picto_recyclable_${dechet.estRecyclable}"></div>

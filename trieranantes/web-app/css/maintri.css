@@ -11,13 +11,13 @@ h1, h2, h3, h4, h5, h6 {
 /* BASE LAYOUT */
 
 html {
-	background-color: #D2F9A4;
 	background-repeat: no-repeat;
 	height: 100%;
 	/* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
 	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	       
 }
 
 html.no-cssgradients {
@@ -33,10 +33,16 @@ html * {
 }
 
 body {
-	background: #F8FFE8;
+	background: #A0DE66;
 	color: #333333;
 	margin: 0 auto;
 	padding:0;
+	height:100%;
+	background:url('../images/content/green-screen-background.jpg') no-repeat center;
+  	-webkit-background-size: cover; /* pour Chrome et Safari */
+  	-moz-background-size: cover; /* pour Firefox */
+  	-o-background-size: cover; /* pour Opera */
+  	background-size: cover; /* version standardisée */
 }
 
 #grailsLogo {
@@ -589,13 +595,6 @@ a.skip {
 
 /* STYLES PERSONNALISES */
 
-html, body {
-	background-color: #D2F9A4;
-}
-	
-body {
-	
-}
 
 .container {
 	background-color: #F9FFF2;
@@ -635,6 +634,7 @@ border-top-right-radius: 8px;
 /* Header */
 
 #header {
+	margin-top:1em;
 	margin-bottom:1em;
 	
 }
@@ -681,6 +681,7 @@ border-top-right-radius: 8px;
 #searchresults .result .item {
 	float:left;
 	width:400px;
+	min-height: 60px;
 }
 
 #searchresults .result .item .intro {
@@ -953,6 +954,38 @@ padding:0.8em;
 	color:#444;
 	font-style:italic;
 	width:80%;
+}
+
+/* FRONTPAGE */
+
+.frontpage {
+	
+}
+
+.frontpage .categorie {
+	float:left;
+	width:110px;
+	background:#D2FA8C;
+	-webkit-box-shadow: 3px 3px 3px rgba(73, 71, 50, 0.6);
+	-moz-box-shadow:    3px 3px 3px rgba(73, 71, 50, 0.6);
+	box-shadow:         3px 3px 3px rgba(73, 71, 50, 0.6);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin:0.8em;
+	padding:0.8em;
+	height:100px;
+}
+
+.frontpage .categorie:hover {
+	background:#ADE07E;
+}
+
+.frontpage .categorie a {
+	display:block;
+	text-decoration:none;
+	width:100%;
+	height:100%;
 }
 
 

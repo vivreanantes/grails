@@ -14,7 +14,7 @@ class CategorieUsuelle {
 		nom nullable:false
 		description nullable:true
 		sousCategories nullable:true, validator: { val, obj ->
-		    (obj.estSousCategorie && (val.size() == 0)) || !obj.estSousCategorie
+		    (obj.estSousCategorie) || !obj.estSousCategorie
 		}
     }
 }

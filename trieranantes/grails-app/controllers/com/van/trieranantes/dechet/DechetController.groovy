@@ -14,7 +14,9 @@ class DechetController {
 			return
 		}
 
-		[dechetInstance: dechetInstance]
+		def modesCollecte=dechetInstance.categorieTraitement.modesCollecte
+		
+		[dechetInstance: dechetInstance, modesCollecte : modesCollecte]
 	}
 	
     def index() {

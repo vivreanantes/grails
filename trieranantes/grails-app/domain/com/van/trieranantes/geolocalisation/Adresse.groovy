@@ -8,7 +8,21 @@ class Adresse {
 	String adresse4
 	String codePostal
 	String ville
+	//Latitude , Longitude
+	Float lat
+	Float lng
 	
     static constraints = {
+		
+		adresse1(unique: ['codePostal','ville'])
+		
+		/*
+		latitude nullable:true, validator: { val, obj ->
+			(val>=0 && val<90)
+		}
+		longitude nullable:true, validator: { val, obj ->
+			(val>=0 && val<360)
+		}
+		*/
     }
 }

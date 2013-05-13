@@ -12,9 +12,18 @@ class CategorieUsuelleController {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'categorieUsuelle.label', default: 'CategorieUsuelle'), id])
 			redirect(action: "list")
 		} else {
-			List<Dechet> listeDechets = Dechet.findAllByCategorieUsuelle(categorieUsuelle)
-			println listeDechets
-			listeDechets.each {println it.nom }
+		
+			def subcategories=categorieUsuelle.sousCategories
+			List<Dechet> listeDechets = []
+			
+			/* Sous categories ? */
+			if (subcategories.size()>0) {
+					
+				subcategories.add(categorieUsuelle)
+				listeDechets = Dechet.findAllByCategorieUsuelleInList(subcategories)	
+						
+			} else listeDechets=Dechet.findAllByCategorieUsuelle(categorieUsuelle)
+			
 			[categorieUsuelle: categorieUsuelle, listeDechets:listeDechets]
 		}
 	}
