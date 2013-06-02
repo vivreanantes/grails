@@ -7,9 +7,10 @@
 function VanMap() { 
 
 	
-    this.mapParams = {center: [47.21607, -1.544781], zoom: 12}; 
+    this.mapParams = {center: [47.21607, -1.544781], zoom: 11}; 
     this.map=null;
     this.overlayLayers=[];
+    this.overlayLayersHidden=[];
     
     this.init = function() { 
 
@@ -25,57 +26,67 @@ function VanMap() {
     	osmAttrib='Map data © openstreetmap';
     	osmLayer = new L.TileLayer(osmUrl,{minZoom:8,maxZoom:18,attribution:osmAttrib});  	
     	osmLayer.addTo(this.map);
-    	
-    	
-    	/* Collecte Layer */
-    	/*
-    	this.collecteLayer = L.geoJson([], { 
-    			
-    		// PointToLayer
-    		pointToLayer: function (feature, latlng) {
-				return L.circleMarker(latlng, {
-					radius: 8,
-					fillColor: "#ff7800",
-					color: "#000",
-					weight: 1,
-					opacity: 1,
-					fillOpacity: 0.8
-				});			
-    		}
-    	
-    		});*/
-    	
+		
     }
 
     this.show = function() { 
-    	   	
-    	
+    	 
+    	for (var layerid in this.overlayLayers) {
+    	    
+    		this.log('ADD LAYER TO MAP '+ layerid,'debug');
+        	this.map.addLayer(this.overlayLayers[layerid]);
+    		
+    	}
     
     }
     
-	/* Affiche un marqueur pour l'adresse entree 
-	 * Service de geocoding Google Adresse => Latitude,Longitude 
-	 * @param info {code : 'sdc_de', coord : { lat : 45.075, lng : -1.5236 }, fulladress : 'rue de strasbourg 44200 nantes', customtext : 'Mardi au Samedi de 10h à  17h30 (sauf jours fériés)'}
+	/* Ajout d'un point sur la carte
+	 * @param info {type : 'sdc_de', coord : { lat : 45.075, lng : -1.5236 }, fulladress : 'rue de strasbourg 44200 nantes', customtext : 'Mardi au Samedi de 10h à  17h30 (sauf jours fériés)'}
 	 * */
     this.addPoint = function (info) {
     	  	
-    	if (typeof info.code != 'undefined' && typeof info.coord != 'undefined') {
+    	if (typeof info.type != 'undefined' && typeof info.coord != 'undefined') {
 
     		//LAYER EXISTS ?
-    		layerId=info.code;
+    		layerId=info.type;
     		this.log('ADD POINT '+ info.coord.lat + ' ' + info.coord.lng,'debug');
     		
-    		if (typeof this.overlayLayers[layerId] != 'undefined')
-    		{
-    			
-    			this.log('UPDATE layer '+layerId,'debug');
-    			
-    		}
-    		else {
+    		if (typeof this.overlayLayers[layerId] == 'undefined')
+    		{			  	
     			
     			this.log('CREATE layer '+layerId,'debug');
     			
+    			myobj=this;
+    			
+    			// Layer
+    			this.overlayLayers[layerId] = L.geoJson([], { 
+    	    			
+    	    		// PointToLayer
+    	    		pointToLayer:  myobj.pointToLayer,
+    	    		// onEachFeature
+    	    		onEachFeature: myobj.onEachFeature
+    	    		
+    	    		});
+    							
     		}
+    		
+    		//ADD POINT
+    		if (typeof info.customtext != 'undefined' && info.customtext != '')
+    			popuptext=info.customtext + "<br/>" + info.fulladress ;
+    		else 
+    			popuptext=info.fulladress;
+    		
+    		newcoord=[info.coord.lng , info.coord.lat];
+			geojsonFeature = {
+   	    		    "type": "Feature",
+   	    		    "properties": { type : info.type , popupContent: popuptext },
+   	    		    "geometry": {
+   	    		        "type": "Point",
+   	    		        "coordinates": newcoord
+   	    		    }
+			};
+   	    	 
+			this.overlayLayers[layerId].addData(geojsonFeature);  	
     		
     	}
     	else {
@@ -84,24 +95,27 @@ function VanMap() {
     		
     	}
     	
-    	/*
-    	newcoord=[coord.lng,coord.lat];
-    	
-    	
-          	    	  // PACKING DATA
-          	    	  
-          	    	  geojsonFeature = {
-          	    		    "type": "Feature",
-          	    		    "properties": {},
-          	    		    "geometry": {
-          	    		        "type": "Point",
-          	    		        "coordinates": newcoord
-          	    		    }
-          	    	  };
-          	    	 
-          	    	  this.collecteLayer.addData(geojsonFeature);  	
-          	    	  */
     }
+    
+    this.toggleType = function (type) {
+    	
+    	if (typeof this.overlayLayers[type] != 'undefined')
+		{	
+    		this.log('HIDE LAYER '+ type,'debug');
+    		this.overlayLayersHidden[type]=this.overlayLayers[type];
+    		this.map.removeLayer(this.overlayLayers[type]);
+    		delete this.overlayLayers[type];
+		}
+    	else if (typeof this.overlayLayersHidden[type] != 'undefined') {
+    		
+    		this.log('SHOW LAYER '+ type,'debug');
+    		this.overlayLayers[type]=this.overlayLayersHidden[type];
+    		this.map.addLayer(this.overlayLayers[type]);
+    		delete this.overlayLayersHidden[type];
+    	}
+    	
+    }
+    
     
     this.log = function (obj,level) {
     	
@@ -125,6 +139,72 @@ function VanMap() {
     		}
     		
     	}
+    	
+    }
+    
+    this.pointToLayer = function (feature, latlng) {
+			
+    	
+			// Creates a red marker with the coffee icon
+			customMarker = L.AwesomeMarkers.icon({
+			  icon: myobj.mapAwesomeIcon(feature.properties.type), 
+			  color: myobj.mapAwesomeColor(feature.properties.type),
+			  iconColor: 'white'
+			});	
+			
+			finalMarker= L.marker(latlng, {icon: customMarker});
+			
+			return finalMarker;
+			
+    }
+    
+    this.onEachFeature = function (feature, layer) {
+    	
+        // does this feature have a property named popupContent?
+        if (feature.properties && feature.properties.popupContent) {
+            layer.bindPopup(feature.properties.popupContent);
+        }
+    }
+    
+    this.mapAwesomeIcon = function (type) {
+ 	
+    	awesomeIcon='flag';
+    	   	
+    	switch (type) {
+		 case 'sdc_de':
+			 awesomeIcon='flag';
+		 break; 
+		 case 'modco_contverre':
+			 awesomeIcon='glass';
+		 default: 
+		 break;
+		}	
+    	
+    	myobj.log('ICON '+awesomeIcon,'debug');
+    	
+    	return awesomeIcon;
+    	
+    }
+    
+    this.mapAwesomeColor = function (type) {
+        
+    	awesomeColor='blue';
+    	
+    	switch (type) {
+		 case 'sdc_de':
+			 awesomeColor='blue';
+		 break;
+		 case 'sdc_ec':
+			 awesomeColor='blue';
+		 break;
+		 case 'modco_contverre':
+			 awesomeColor='green';
+		 break;
+		 default: 
+		 break;
+		}
+    	
+    	return awesomeColor;
     	
     }
     

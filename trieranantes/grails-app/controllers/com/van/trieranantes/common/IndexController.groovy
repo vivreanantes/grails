@@ -6,7 +6,7 @@ class IndexController {
 
     def index() { 
 		
-		List<CategorieUsuelle> categoriesUsuelles = CategorieUsuelle.findAll()
+		List<CategorieUsuelle> categoriesUsuelles = CategorieUsuelle.findAllWhere(estSousCategorie: false)
 		[categoriesUsuelles: categoriesUsuelles]
 		
 	}

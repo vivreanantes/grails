@@ -8,7 +8,7 @@
 	<div class="categorie"><g:link controller="CategorieUsuelle" action="listeDechets" id="${element[0].id}">${element[0].nom}</g:link></div>
 	<g:each var="dechet" in="${element[1]}"> 
 		<div class="result">
-			<div class="picto"><r:img uri="${dechet.nomFichier}"/></div>
+			<div class="picto"><r:img uri="${dechet.image}"/></div>
 			<div class="item">
 				<div class="intro">
 						<h2><g:link controller="Dechet" action="detail" id="${dechet.id}">${dechet.nom}</g:link></h2>

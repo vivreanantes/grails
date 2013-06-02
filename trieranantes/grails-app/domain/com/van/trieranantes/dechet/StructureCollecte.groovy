@@ -18,5 +18,14 @@ class StructureCollecte {
 	
     static constraints = {
 		code nullable:false, unique:true
+		description nullable:true
+		adresse nullable:true
+		plageHoraire nullable:true
+		telephone nullable:true
+		siteInternet nullable:true
     }
+	
+	static mapping = {
+		description column: "description", sqlType: "char", length: 2048
+	}
 }

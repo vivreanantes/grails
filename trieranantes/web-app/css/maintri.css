@@ -1,13 +1,3 @@
-/* FONT STACK */
-body,
-input, select, textarea {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1.1;
-}
-
 /* BASE LAYOUT */
 
 html {
@@ -600,6 +590,10 @@ a.skip {
 	background-color: #F9FFF2;
 }
 
+#content {
+	margin-bottom:1.5em;
+}
+
 .projet {
 	
 }
@@ -611,11 +605,10 @@ a.skip {
 	font-size:1.6em;
 }
 
-/* Blueprint Custom */
+/* Bootrap Twitter Custom */
 
 .container {
 	
-	padding-bottom:2em;
 	-webkit-border-bottom-right-radius: 8px;
 	-webkit-border-bottom-left-radius: 8px;
 	-moz-border-radius-bottomright: 8px;
@@ -629,6 +622,7 @@ a.skip {
 -moz-border-radius-topright: 8px;
 border-top-left-radius: 8px;
 border-top-right-radius: 8px;
+padding:1.5em;
 }
 
 /* Header */
@@ -640,7 +634,6 @@ border-top-right-radius: 8px;
 }
 
 #header h1 {
-	padding-left:1em;
 	padding-bottom:0.8em;
 	font-size:1.8em;
 }
@@ -658,7 +651,6 @@ border-top-right-radius: 8px;
 
 #searchresults .result {
 	background-color:#eee;
-	width:80%;
 	padding:0.5em;
 	margin-top:0.5em;
 	-webkit-border-radius: 3px;
@@ -889,20 +881,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', end
 }
 
 #detaildechet .infos {
-	width:180px;
-	height:350px;
-	float:left;
+	width:100%;
 	background-color:#fff;
-	
-
 }
 
 #detaildechet .pointscollecte {
 padding:0.5em;
 font-weight:bold;
-background:#ccc url('../images/content/flechesdouble.png') no-repeat;
+background:#ccc;
 background-position:95% 50%;
-margin-bottom:1.5em;
+margin-bottom:0em;
 }
 
 
@@ -924,7 +912,7 @@ border-bottom:dotted 1px #ccc;
 
 #map {
 	float:left;
-	width:380px;
+	width:100%;
 	height: 350px;
     margin: 0;
     padding: 0;
@@ -938,6 +926,7 @@ border-bottom:dotted 1px #ccc;
 border-radius: 5px;
 background:#eee;
 padding:0.8em;
+margin-top:1.5em;
 }
 
 .checkbox_multichoix {
@@ -964,7 +953,7 @@ padding:0.8em;
 
 .frontpage .categorie {
 	float:left;
-	width:110px;
+	width:100px;
 	background:#D2FA8C;
 	-webkit-box-shadow: 3px 3px 3px rgba(73, 71, 50, 0.6);
 	-moz-box-shadow:    3px 3px 3px rgba(73, 71, 50, 0.6);
@@ -974,7 +963,7 @@ padding:0.8em;
 	border-radius: 5px;
 	margin:0.8em;
 	padding:0.8em;
-	height:100px;
+	height:60px;
 }
 
 .frontpage .categorie:hover {

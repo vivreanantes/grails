@@ -6,6 +6,7 @@ class DechetController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+	/* Detail d'un dechet */
 	def detail(Long id) {
 		def dechetInstance = Dechet.get(id)
 		if (!dechetInstance) {
@@ -14,9 +15,24 @@ class DechetController {
 			return
 		}
 
+		//Modes de collecte
 		def modesCollecte=dechetInstance.categorieTraitement.modesCollecte
 		
-		[dechetInstance: dechetInstance, modesCollecte : modesCollecte]
+		//Structures de collecte
+		def structures=[]
+		if (modesCollecte.size()>0) {
+			
+			int i=0
+			for ( modeCollecte in modesCollecte ) {
+				
+				structures[i]=[modeCollecte : modeCollecte, structuresCollecte : modeCollecte.structuresCollecte]
+				i++
+			}
+
+			//println structures
+		}
+		
+		[dechetInstance: dechetInstance, modesCollecte : modesCollecte, structuresCollecte : structures]
 	}
 	
     def index() {

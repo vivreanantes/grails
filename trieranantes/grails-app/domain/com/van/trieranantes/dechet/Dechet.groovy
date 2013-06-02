@@ -9,7 +9,7 @@ class Dechet {
 	CategorieUsuelle categorieUsuelle
 	boolean estVerifie
 	boolean estRecyclable
-	String nomFichier
+	String image
 	
 	static hasMany = [conseils:Conseil]
 	
@@ -19,6 +19,6 @@ class Dechet {
 		description nullable:true
 		categorieTraitement nullable:false
 		categorieUsuelle nullable:false
-		nomFichier nullable:true
+		image nullable:true
     }
 }

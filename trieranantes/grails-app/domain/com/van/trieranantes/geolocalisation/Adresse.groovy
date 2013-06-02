@@ -14,7 +14,12 @@ class Adresse {
 	
     static constraints = {
 		
-		adresse1(unique: ['codePostal','ville'])
+		adresse1 (unique: ['lat','lng'])
+		adresse2 nullable:true
+		adresse3 nullable:true
+		adresse4 nullable:true
+		codePostal nullable:false
+		ville nullable:false
 		
 		/*
 		latitude nullable:true, validator: { val, obj ->

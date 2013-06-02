@@ -11,8 +11,9 @@ class ModeCollecte {
 	
      static constraints = {
 		code nullable:false, unique:true
-		sousModesCollecte nullable:true, validator: { val, obj ->
-			(obj.estSousModeCollecte && (val.size() == 0)) || !obj.estSousModeCollecte
-		}
+		//sousModesCollecte nullable:true
+		/*, validator: { val, obj ->
+			//(obj.estSousModeCollecte && (val.size() == 0)) || !obj.estSousModeCollecte
+		}*/
     }
 }
