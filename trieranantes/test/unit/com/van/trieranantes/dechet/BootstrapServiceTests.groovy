@@ -3,13 +3,16 @@ package com.van.trieranantes.dechet
 
 
 import grails.test.mixin.*
+
 import org.junit.*
+
+import com.van.trieranantes.geolocalisation.Adresse
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(BootstrapService)
-@Mock([CategorieUsuelle,  CategorieTraitement, Dechet])
+@Mock([CategorieUsuelle,  CategorieTraitement, Dechet, ModeCollecte, Adresse, StructureCollecte])
 class BootstrapServiceTests {
 
 	@Test

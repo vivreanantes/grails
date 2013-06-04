@@ -37,8 +37,6 @@ class BootstrapService {
 
 
 		/* MODES DE COLLECTE */
-
-		
 		ModeCollecte modco_contmpb = new  ModeCollecte(code:"modco_contmpb",libelle:"conteneur métal/plastique/brique",description:"(ou container)"); modco_contmpb.save()
 		ModeCollecte modco_contpapiercarton = new  ModeCollecte(code:"modco_contpapiercarton",libelle:"conteneur papier-carton",description:"(ou container)"); modco_contpapiercarton.save()
 		ModeCollecte modco_contverre = new  ModeCollecte(code:"modco_contverre",libelle:"conteneur verre",description:"Aussi appelée 'container verre' (on parle aussi de 'colonne verre')"); modco_contverre.save()

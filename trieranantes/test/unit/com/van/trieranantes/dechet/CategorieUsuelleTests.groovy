@@ -11,7 +11,12 @@ import org.junit.*
 @TestFor(CategorieUsuelle)
 class CategorieUsuelleTests {
 
-    void testSomething() {
-       fail "Implement me"
-    }
+    static CategorieUsuelle get1CategorieUsuelle(){
+		CategorieUsuelle categorie = new CategorieUsuelle(
+			code:"0002",
+			nom:"nom cat",
+			description:"une description",
+			estSousCategorie:false
+		)
+	}
 }

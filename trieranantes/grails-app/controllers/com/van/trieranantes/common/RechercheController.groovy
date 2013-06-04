@@ -4,19 +4,26 @@ import com.van.trieranantes.dechet.Dechet;
 
 class RechercheController {
 
-    def resultat() {
-		def resultatsRecherche = []
-		String keywords = "bouteille"
+	def rechercheService
+	
+    def resultat(String keywords) {
+		// parsing de l'entrée
+		List<String> listeMots = keywords.split()
+		def resultatsRecherche = [:]
+		def dechets = []
+		println listeMots
+		// TODO choix des objets où faire la recherche --> ajout des filtres		
+		// faire une recherche par mot trouvé
+		listeMots.each {String motCle ->
+			dechets += rechercheService.rechercherDechets(motCle)
+		}
+		dechets.each {Dechet dechet ->
+			if (!resultatsRecherche.get(dechet.categorieUsuelle)){
+				resultatsRecherche.put(dechet.categorieUsuelle, [])
+			}
+			resultatsRecherche.get(dechet.categorieUsuelle).add(dechet)
+		}
 		
-		// début bouchon
-		def dechets = Dechet.findAll()
-		Dechet dechet = dechets[0]
-		def element = []
-		element.add(dechet.categorieUsuelle)
-		element.add(dechet)
-		resultatsRecherche.add(element)
-		// fin bouchon
-		
-		[keywords:keywords, resultatsRecherche:resultatsRecherche]
+		[keywords:listeMots, resultatsRecherche:resultatsRecherche]
 	}
 }
