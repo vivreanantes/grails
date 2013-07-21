@@ -1,12 +1,13 @@
 <meta name="layout" content="mainTri">
 
 <div id="searchresults">
-<h1>Résultats de recherche : <span class="keywords">${keywords}</span></h1>
+<h1>Résultats de recherche</h1>
+<h6>Mots recherchés : <span class="keywords">${keywords}</span></h6>
 
 
-<g:each var="element" in="${resultatsRecherche}">   
-	<div class="categorie"><g:link controller="CategorieUsuelle" action="listeDechets" id="${element[0].id}">${element[0].nom}</g:link></div>
-	<g:each var="dechet" in="${element[1]}"> 
+<g:each var="element" in="${mapDechetsParCategorie}">   
+	<div class="categorie"><g:link controller="CategorieUsuelle" action="listeDechets" id="${element.key.id}">${element.key.nom}</g:link></div>
+	<g:each var="dechet" in="${element.value}"> 
 		<div class="result">
 			<div class="picto"><r:img uri="${dechet.image}"/></div>
 			<div class="item">
@@ -19,4 +20,8 @@
 		</div>
 	</g:each>
 </g:each>
+
+	<g:each var="dechet" in="${resultatsRechercheDechets}">
+	
+	</g:each>
 </div>

@@ -1,5 +1,9 @@
 package com.van.trieranantes.dechet
 
+import java.text.Normalizer
+
+import com.van.trieranantes.recherche.IndexDechet
+
 class Dechet {
 
     String code
@@ -10,6 +14,7 @@ class Dechet {
 	boolean estVerifie
 	boolean estRecyclable
 	String image
+	IndexDechet indexDechet
 	
 	static hasMany = [conseils:Conseil]
 	
@@ -21,4 +26,10 @@ class Dechet {
 		categorieUsuelle nullable:false
 		image nullable:true
     }
+	
+	def beforeValidate(){
+		indexDechet = new IndexDechet(dechet:this)
+		indexDechet.nom = Normalizer.normalize(nom?:"", Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")?.toLowerCase()
+		indexDechet.description = Normalizer.normalize(description?:"", Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")?.toLowerCase()
+	}
 }
