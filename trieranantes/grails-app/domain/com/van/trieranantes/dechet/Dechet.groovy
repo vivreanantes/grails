@@ -27,6 +27,10 @@ class Dechet {
 		image nullable:true
     }
 	
+	static mapping = {
+		description type:'text'
+	}
+	
 	def beforeValidate(){
 		indexDechet = new IndexDechet(dechet:this)
 		indexDechet.nom = Normalizer.normalize(nom?:"", Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")?.toLowerCase()

@@ -8,4 +8,8 @@ class Conseil {
 	
     static constraints = {
     }
+	
+	static mapping = {
+		description type:'text'
+	}
 }

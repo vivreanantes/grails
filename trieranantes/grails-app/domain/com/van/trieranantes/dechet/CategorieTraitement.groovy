@@ -9,7 +9,7 @@ class CategorieTraitement {
 	static hasMany=[modesCollecte:ModeCollecte, conseils:Conseil]
 	
 	static mapping = {
-		description column: "description", sqlType: "char", length: 1020
+		description type:'text'
 	}
 	
     static constraints = {

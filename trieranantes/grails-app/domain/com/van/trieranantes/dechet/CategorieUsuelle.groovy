@@ -6,15 +6,19 @@ class CategorieUsuelle {
 	String nom
 	String description
 	boolean estSousCategorie
-	
+
 	static hasMany = [sousCategories:CategorieUsuelle, conseils:Conseil]
-	
-     static constraints = {
+
+	static constraints = {
 		code nullable:false, unique:true
 		nom nullable:false
 		description nullable:true
 		sousCategories nullable:true, validator: { val, obj ->
-		    (obj.estSousCategorie) || !obj.estSousCategorie
+			(obj.estSousCategorie) || !obj.estSousCategorie
 		}
-    }
+	}
+
+	static mapping = { 
+		description type:'text' 
+	}
 }

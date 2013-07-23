@@ -6,14 +6,18 @@ class ModeCollecte {
 	String libelle
 	String description
 	boolean estSousModeCollecte
-	
+
 	static hasMany = [sousModesCollecte:ModeCollecte, structuresCollecte:StructureCollecte, conseils:Conseil]
-	
-     static constraints = {
+
+	static constraints = {
 		code nullable:false, unique:true
 		//sousModesCollecte nullable:true
 		/*, validator: { val, obj ->
-			//(obj.estSousModeCollecte && (val.size() == 0)) || !obj.estSousModeCollecte
-		}*/
-    }
+		 //(obj.estSousModeCollecte && (val.size() == 0)) || !obj.estSousModeCollecte
+		 }*/
+	}
+
+	static mapping = { 
+		description type:'text' 
+	}
 }

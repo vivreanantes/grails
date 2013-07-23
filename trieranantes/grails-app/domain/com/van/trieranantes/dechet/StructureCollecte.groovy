@@ -26,6 +26,6 @@ class StructureCollecte {
     }
 	
 	static mapping = {
-		description column: "description", sqlType: "char", length: 2048
+		description type:'text'
 	}
 }

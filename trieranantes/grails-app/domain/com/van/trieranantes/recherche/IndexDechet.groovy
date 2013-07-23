@@ -11,4 +11,8 @@ class IndexDechet {
 	
     static constraints = {
     }
+	
+	static mapping = {
+		description type:'text'
+	}
 }
